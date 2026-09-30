@@ -415,6 +415,12 @@ footer .script:last-child{
 .rsvp-done{
   display:none;padding:12px 10px 4px;
 }
+.rsvp-edit{
+  margin-top:14px;background:none;border:none;cursor:pointer;
+  font-family:var(--serif2);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green-soft);border-bottom:1px solid rgba(143,174,126,.7);padding-bottom:2px;
+}
+.rsvp-edit:hover{color:var(--gold)}
 .rsvp-done .script{font-size:clamp(30px,8.6vw,40px)}
 /* ---------- program ---------- */
 .program-rows{margin-top:26px}
@@ -528,7 +534,6 @@ const CONFIG = {
 
   <!-- ================= GREETING ================= -->
   <section class="greeting reveal">
-    <div class="sec-floral sf-a" aria-hidden="true"><img src="floral-tr.png" alt=""></div>
     <p class="caps">
       Құрметті ағайын-туыс,<br>
       бауырлар, нағашы-жиен,<br>
@@ -592,7 +597,7 @@ const CONFIG = {
         </svg>
       </span>
       <span class="map-card-txt">
-        <b>Google Maps-та ашу</b>
+        <b>Мекенжайды ашу</b>
         <small id="mapCardSub">«Хан» мейрамханасы, Сарыағаш</small>
       </span>
       <span class="map-card-arrow">→</span>
@@ -650,6 +655,7 @@ const CONFIG = {
         <path d="M10,10 C30,2 40,2 58,10 C76,2 90,2 110,10" stroke="#8FAE7E" stroke-width="1.4" fill="none"/>
         <circle cx="10" cy="10" r="2" fill="#8FAE7E"/><circle cx="110" cy="10" r="2" fill="#8FAE7E"/>
       </svg>
+      <button type="button" class="rsvp-edit" id="rsvpEdit">Жауабымды өзгерту</button>
     </div>
   </section>
 
@@ -658,19 +664,6 @@ const CONFIG = {
   <!-- ================= FOOTER ================= -->
   <footer class="reveal">
     <p class="script" style="font-size:clamp(26px,7.6vw,34px)">Келіңіздер,<br>қуанышымызға ортақ<br>болыңыздар!</p>
-    <svg class="foot-floral" viewBox="0 0 300 160" aria-hidden="true">
-      <g transform="translate(150,80)">
-        <circle r="40" fill="#fff" opacity=".95"/><path d="M0,-26 C17,-24 26,-12 24,5 C21,21 7,29 -8,25 C-23,21 -29,7 -23,-7 C-18,-19 -9,-26 0,-26 Z" fill="#F6EEE6"/><path d="M0,-14 C9,-13 15,-6 13,3 C11,11 4,15 -5,13 C-13,11 -17,3 -13,-5 C-10,-11 -5,-14 0,-14 Z" fill="#EFE3D7"/>
-      </g>
-      <g transform="translate(75,60) scale(.75)"><circle r="34" fill="#fff" opacity=".92"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
-      <g transform="translate(228,58) scale(.7)"><circle r="34" fill="#fff" opacity=".9"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
-      <g transform="translate(35,100) scale(.55)"><circle r="34" fill="#fff" opacity=".88"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
-      <g transform="translate(265,100) scale(.55)"><circle r="34" fill="#fff" opacity=".88"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
-      <path d="M150,80 C110,70 85,45 80,25 C110,42 135,62 150,80 Z" fill="#8FAE7E" opacity=".7"/>
-      <path d="M150,80 C190,68 215,45 220,25 C190,42 165,62 150,80 Z" fill="#5F7A4E" opacity=".65"/>
-      <path d="M105,105 C80,112 62,128 60,148 C80,132 96,118 105,105 Z" fill="#A8B89A" opacity=".6"/>
-      <path d="M195,105 C220,112 238,128 240,148 C220,132 204,118 195,105 Z" fill="#A8B89A" opacity=".6"/>
-    </svg>
     <p class="script" style="margin-top:10px">Абылай & Айдана</p>
   </footer>
 </div>
@@ -840,6 +833,14 @@ const CONFIG = {
   try{
     if(localStorage.getItem(KEY)){ form.style.display='none'; done.style.display='block'; }
   }catch(e){}
+  // let guest edit their response
+  document.getElementById('rsvpEdit').addEventListener('click', ()=>{
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    done.style.display = 'none';
+    form.style.display = '';
+    document.getElementById('guestName').focus();
+    form.scrollIntoView({behavior:'smooth', block:'center'});
+  });
   form.addEventListener('submit', e=>{
     e.preventDefault();
     const name = document.getElementById('guestName').value.trim();
