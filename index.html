@@ -53,9 +53,15 @@ section{position:relative;padding:56px 26px;text-align:center}
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:30px 18px 70px;
 }
-.hero-floral{position:absolute;width:210px;opacity:.95;pointer-events:none}
-.hf-tr{top:-14px;right:-52px}
-.hf-bl{bottom:-20px;left:-58px;transform:scaleX(-1)}
+.hero-floral{position:absolute;width:min(66vw,300px);pointer-events:none;
+  animation:flFadeIn 1.1s ease both, floralFloat 7s 1.5s ease-in-out infinite}
+.hero-floral img{width:100%;display:block}
+.hf-bl img{transform:scaleX(-1)}
+.hf-tr{top:-64px;right:-56px;animation-name:flFadeRight, floralFloat}
+.hf-bl{top:42%;left:-58px;animation-name:flFadeLeft, floralFloatBl}
+@keyframes flFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes flFadeRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:none}}
+@keyframes flFadeLeft{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:none}}
 .hero-names{
   position:absolute;top:0;left:0;right:0;bottom:0;
   display:flex;justify-content:space-between;align-items:center;
@@ -93,12 +99,16 @@ section{position:relative;padding:56px 26px;text-align:center}
   50%{transform:translateY(-5px)}
 }
 .couple-wrap{
-  width:min(82vw,360px);
+  width:min(104vw,460px);
   height:auto;
   margin:0 auto;
   display:block;
-  filter:drop-shadow(0 10px 24px rgba(95,122,78,.18));
-  animation:floatIn 1.4s ease .2s both;
+  filter:drop-shadow(0 12px 28px rgba(95,122,78,.18));
+  animation:zoomCouple 1.2s cubic-bezier(.22,1,.36,1) .15s both;
+}
+@keyframes zoomCouple{
+  from{opacity:0;transform:scale(.88)}
+  to{opacity:1;transform:scale(1)}
 }
 .wedding-day{
   margin-top:26px;font-family:var(--serif);
@@ -108,11 +118,6 @@ section{position:relative;padding:56px 26px;text-align:center}
 .hero-date{
   margin-top:14px;font-family:var(--serif2);font-size:16px;letter-spacing:.34em;text-indent:.34em;
   color:var(--gold);font-weight:500;font-variant-numeric:tabular-nums;
-}
-/* gold thin frame around couple */
-.hero-arch{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);
-  width:min(88vw,392px);pointer-events:none;opacity:.85;
 }
 /* sparkles */
 .spark{
@@ -137,15 +142,14 @@ section{position:relative;padding:56px 26px;text-align:center}
   92%{opacity:.7}
   100%{transform:translateY(104vh) translateX(-2vw) rotate(360deg);opacity:0}
 }
-.hero-floral{animation:floralFloat 7s ease-in-out infinite}
+.hero-floral{will-change:transform}
 @keyframes floralFloat{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-9px)}
 }
-.hf-bl{animation-name:floralFloatBl}
 @keyframes floralFloatBl{
-  0%,100%{transform:scaleX(-1) translateY(0)}
-  50%{transform:scaleX(-1) translateY(-9px)}
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-9px)}
 }
 .chevrons{
   position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
@@ -415,7 +419,7 @@ footer .script{font-size:clamp(30px,8.8vw,42px)}
   section{padding:70px 34px}
 }
 @media (min-height:760px){
-  .couple-wrap{width:min(84vw,360px)}
+  .couple-wrap{width:min(104vw,460px)}
 }
 </style>
 </head>
@@ -459,44 +463,8 @@ const CONFIG = {
   <!-- ================= HERO ================= -->
   <section class="hero">
     <!-- florals -->
-    <svg class="hero-floral hf-tr" viewBox="0 0 300 300" aria-hidden="true">
-      <g fill="none">
-        <!-- roses -->
-        <g transform="translate(150,120)">
-          <circle r="34" fill="#fff" opacity=".92"/><circle r="34" fill="none" stroke="#E9DFD3" stroke-width="1"/>
-          <path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/>
-          <path d="M0,-12 C8,-11 12,-5 11,2 C10,9 3,13 -4,11 C-11,9 -14,2 -11,-4 C-9,-9 -4,-12 0,-12 Z" fill="#EFE3D7"/>
-          <circle r="4" fill="#E7D9CB"/>
-        </g>
-        <g transform="translate(88,190) scale(.8)"><circle r="34" fill="#fff" opacity=".9"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/><path d="M0,-12 C8,-11 12,-5 11,2 C10,9 3,13 -4,11 C-11,9 -14,2 -11,-4 C-9,-9 -4,-12 0,-12 Z" fill="#EFE3D7"/><circle r="4" fill="#E7D9CB"/></g>
-        <g transform="translate(215,205) scale(.66)"><circle r="34" fill="#fff" opacity=".88"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/><path d="M0,-12 C8,-11 12,-5 11,2 C10,9 3,13 -4,11 C-11,9 -14,2 -11,-4 C-9,-9 -4,-12 0,-12 Z" fill="#EFE3D7"/><circle r="4" fill="#E7D9CB"/></g>
-        <!-- leaves -->
-        <path d="M150,120 C120,150 95,190 88,190 C100,150 120,130 150,120 Z" fill="#8FAE7E" opacity=".75"/>
-        <path d="M150,120 C185,140 210,175 215,205 C200,165 180,140 150,120 Z" fill="#5F7A4E" opacity=".7"/>
-        <path d="M120,90 C90,80 60,85 45,100 C75,100 100,95 120,90 Z" fill="#8FAE7E" opacity=".6"/>
-        <path d="M185,85 C215,70 250,72 268,88 C235,86 205,84 185,85 Z" fill="#A8B89A" opacity=".6"/>
-        <path d="M70,140 C50,150 38,170 40,192 C55,172 65,155 70,140 Z" fill="#A8B89A" opacity=".55"/>
-        <!-- buds -->
-        <circle cx="60" cy="115" r="7" fill="#F6EEE6" stroke="#E9DFD3"/>
-        <circle cx="240" cy="120" r="6" fill="#F6EEE6" stroke="#E9DFD3"/>
-        <circle cx="180" cy="60" r="5" fill="#F6EEE6" stroke="#E9DFD3"/>
-      </g>
-    </svg>
-    <svg class="hero-floral hf-bl" viewBox="0 0 300 300" aria-hidden="true">
-      <g>
-        <g transform="translate(150,150)">
-          <circle r="36" fill="#fff" opacity=".92"/>
-          <path d="M0,-23 C15,-21 23,-10 21,4 C19,18 6,25 -7,22 C-20,19 -25,6 -20,-6 C-16,-17 -8,-23 0,-23 Z" fill="#F6EEE6"/>
-          <path d="M0,-12 C8,-11 13,-5 12,2 C11,9 3,13 -4,11 C-11,9 -15,2 -12,-4 C-10,-9 -4,-12 0,-12 Z" fill="#EFE3D7"/>
-        </g>
-        <g transform="translate(90,90) scale(.7)"><circle r="34" fill="#fff" opacity=".9"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
-        <g transform="translate(215,95) scale(.6)"><circle r="34" fill="#fff" opacity=".88"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
-        <path d="M150,150 C115,135 85,105 90,90 C120,110 140,130 150,150 Z" fill="#8FAE7E" opacity=".75"/>
-        <path d="M150,150 C185,140 210,110 215,95 C190,120 170,135 150,150 Z" fill="#5F7A4E" opacity=".7"/>
-        <path d="M115,205 C90,215 72,235 72,258 C90,238 105,220 115,205 Z" fill="#A8B89A" opacity=".6"/>
-        <path d="M195,200 C220,208 240,228 242,250 C224,232 208,215 195,200 Z" fill="#8FAE7E" opacity=".6"/>
-      </g>
-    </svg>
+    <img class="hero-floral hf-tr" src="floral-tr.png" alt="" aria-hidden="true">
+    <img class="hero-floral hf-bl" src="floral-tr.png" alt="" aria-hidden="true">
 
     <!-- vertical names -->
     <div class="hero-names">
@@ -505,13 +473,7 @@ const CONFIG = {
     </div>
 
     <!-- gold arch frame -->
-    <svg class="hero-arch" viewBox="0 0 392 500" aria-hidden="true">
-      <path d="M14,494 L14,196 a182,182 0 0 1 364,0 L378,494" fill="none" stroke="var(--gold)" stroke-width="1.4" opacity=".75"/>
-      <path d="M26,494 L26,200 a170,170 0 0 1 340,0 L366,494" fill="none" stroke="var(--gold2)" stroke-width=".8" opacity=".6"/>
-      <g fill="var(--gold)">
-        <circle cx="196" cy="10" r="2.4"/><circle cx="188" cy="18" r="1.5"/><circle cx="204" cy="18" r="1.5"/>
-      </g>
-    </svg>
+    
 
     <span class="spark" style="top:24%;left:16%;animation-delay:.2s">✦</span>
     <span class="spark" style="top:18%;right:18%;animation-delay:1.1s">✦</span>
