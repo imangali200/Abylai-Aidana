@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&family=Prata&display=swap" rel="stylesheet">
 <style>
 /* Түпнұсқа сайттың шрифттері (designbystar) */
+@font-face{font-family:'KZ GoodVibes';src:url('fonts/kz-goodvibes.woff') format('woff');font-weight:400 800;font-style:normal;font-display:swap}
 @font-face{font-family:'KZ Shelley';src:url('fonts/kz-shelley.woff') format('woff');font-weight:400 800;font-style:normal;font-display:swap}
 @font-face{font-family:'KZ Champion';src:url('fonts/kz-champion.woff') format('woff');font-weight:400 800;font-style:normal;font-display:swap}
 @font-face{font-family:'KZ Monumenta';src:url('fonts/kz-monumenta.woff') format('woff');font-weight:400 900;font-style:normal;font-display:swap}
@@ -63,7 +64,7 @@ body{
 .bd-r2{bottom:-10vmin;right:-15vmin}
 /* ---------- layout ---------- */
 .page{max-width:480px;margin:0 auto;position:relative}
-section{position:relative;padding:56px 26px;text-align:center}
+section{position:relative;padding:34px 26px;text-align:center}
 /* ---------- hero ---------- */
 .hero{
   min-height:100svh;
@@ -85,9 +86,9 @@ section{position:relative;padding:56px 26px;text-align:center}
   padding:34px 4px;pointer-events:none;z-index:3;
 }
 .hero-name{
-  font-family:'KZ Shelley','Marck Script',cursive;
-  font-weight:600;
-  font-size:clamp(42px,12.5vw,62px);
+  font-family:'KZ GoodVibes','KZ Shelley','Marck Script',cursive;
+  font-weight:400;
+  font-size:clamp(48px,14vw,70px);
   line-height:.9;
   color:var(--green);
   letter-spacing:.02em;
@@ -136,6 +137,13 @@ section{position:relative;padding:56px 26px;text-align:center}
   margin-top:14px;font-family:var(--serif2);font-size:16px;letter-spacing:.34em;text-indent:.34em;
   color:var(--gold);font-weight:500;font-variant-numeric:tabular-nums;
 }
+/* small florals for inner sections */
+.sec-floral{position:absolute;width:170px;opacity:.5;pointer-events:none;z-index:0;
+  animation:floralFloat 8s ease-in-out infinite}
+.sec-floral img{width:100%;display:block}
+.sf-a{top:-30px;left:-46px}
+.sf-a img{transform:scaleX(-1)}
+.sf-b{bottom:-34px;right:-46px}
 /* sparkles */
 .spark{
   position:absolute;color:var(--gold2);font-size:13px;pointer-events:none;
@@ -173,7 +181,7 @@ section{position:relative;padding:56px 26px;text-align:center}
   display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink);
   animation:bob 2s ease-in-out infinite;
 }
-.chevrons span{font-size:14px;line-height:1}
+.chevrons img{width:30px;height:auto;display:block;opacity:.8}
 /* ---------- music button ---------- */
 .music-btn{
   position:fixed;right:12px;bottom:14px;z-index:50;
@@ -229,7 +237,7 @@ section{position:relative;padding:56px 26px;text-align:center}
 .invite-flow .row{margin:14px 0}
 .offset-r{transform:translateX(10%)}
 .offset-l{transform:translateX(-8%)}
-.divider-leaf{width:120px;margin:34px auto;opacity:.9}
+.divider-leaf{width:120px;margin:22px auto;opacity:.9}
 .divider-leaf path{stroke:#B99A5B}
 .divider-leaf circle{fill:#B99A5B}
 .radio-row input:checked::after{
@@ -426,7 +434,7 @@ footer .script:last-child{
 .hosts{margin-top:38px}
 .hosts .script{font-size:clamp(26px,7.6vw,34px)}
 /* ---------- footer ---------- */
-footer{padding:36px 26px 84px;text-align:center;position:relative}
+footer{padding:26px 26px 84px;text-align:center;position:relative}
 footer .script{font-size:clamp(30px,8.8vw,42px)}
 .foot-floral{width:230px;margin:6px auto 0;opacity:.95}
 /* ---------- reveal animation ---------- */
@@ -437,7 +445,7 @@ footer .script{font-size:clamp(30px,8.8vw,42px)}
 @keyframes floatIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:none}}
 @media (min-width:700px){
   .hero-floral{width:280px}
-  section{padding:70px 34px}
+  section{padding:44px 34px}
 }
 @media (min-height:760px){
   .couple-wrap{width:min(104vw,460px)}
@@ -511,12 +519,13 @@ const CONFIG = {
     <p class="hero-date" id="heroDate">31 · 10 · 2026</p>
 
     <div class="chevrons" aria-hidden="true">
-      <span>▾</span><span>▾</span>
+      <img src="arrow.png" alt="">
     </div>
   </section>
 
   <!-- ================= GREETING ================= -->
   <section class="greeting reveal">
+    <div class="sec-floral sf-a" aria-hidden="true"><img src="floral-tr.png" alt=""></div>
     <p class="caps">
       Құрметті ағайын-туыс,<br>
       бауырлар, нағашы-жиен,<br>
@@ -589,6 +598,7 @@ const CONFIG = {
 
   <!-- ================= COUNTDOWN ================= -->
   <section class="countdown reveal">
+    <div class="sec-floral sf-b" aria-hidden="true"><img src="floral-tr.png" alt=""></div>
     <p class="script">Қуанышымызға<br>ортақ болыңыздар!</p>
     <p class="script" style="margin-top:14px">Тойға дейін:</p>
     <div class="cd-timer" id="cdTimer" role="timer" aria-live="off">
