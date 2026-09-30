@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Абылай & Айдана</title>
+<meta name="description" content="Сіздерді үйлену тойымызға шақырамыз! Қадірлі қонағымыз болыңыздар!">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF5EE;
+  --wash:#F3DCD6;
+  --wash2:#F7E6E0;
+  --green:#2F3B2A;
+  --green-soft:#4A5A40;
+  --olive:#3A4A1F;
+  --sage:#8FAE7E;
+  --sage-dark:#5F7A4E;
+  --ink:#2A2A2A;
+  --line:#C9CBBE;
+  --serif:'Cormorant Garamond',serif;
+  --script:'Marck Script',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);
+  background:var(--bg);
+  color:var(--green);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+/* ---------- watercolor backdrop ---------- */
+.backdrop{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.backdrop svg{position:absolute;width:70vmin;height:70vmin;opacity:.55}
+.bd-l{top:-8vmin;left:-18vmin}
+.bd-r{top:20vh;right:-22vmin;transform:scaleY(-1)}
+.bd-l2{bottom:8vh;left:-20vmin;transform:scaleX(-1)}
+.bd-r2{bottom:-10vmin;right:-15vmin}
+/* ---------- layout ---------- */
+.page{max-width:480px;margin:0 auto;position:relative}
+section{position:relative;padding:56px 26px;text-align:center}
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:30px 18px 70px;
+}
+.hero-floral{position:absolute;width:210px;opacity:.95;pointer-events:none}
+.hf-tr{top:-14px;right:-52px}
+.hf-bl{bottom:-20px;left:-58px;transform:scaleX(-1)}
+.hero-names{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:26px 6px;pointer-events:none;
+}
+.hero-name{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(40px,12vw,58px);
+  line-height:.95;
+  color:var(--green);
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+.hero-name.left{writing-mode:vertical-rl;transform:rotate(180deg)}
+.hero-name.right{writing-mode:vertical-rl}
+.couple-wrap{
+  width:min(78vw,330px);
+  margin:0 auto;
+  filter:drop-shadow(0 10px 24px rgba(95,122,78,.18));
+  animation:floatIn 1.4s ease .2s both;
+}
+.wedding-day{
+  margin-top:26px;font-family:var(--serif);
+  text-transform:uppercase;letter-spacing:.5em;text-indent:.5em;
+  font-size:13px;color:var(--green-soft);font-weight:500;
+}
+.hero-date{
+  margin-top:14px;font-size:16px;letter-spacing:.34em;text-indent:.34em;
+  color:var(--green);font-weight:500;font-variant-numeric:tabular-nums;
+}
+.chevrons{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink);
+  animation:bob 2s ease-in-out infinite;
+}
+.chevrons span{font-size:14px;line-height:1}
+/* ---------- music button ---------- */
+.music-btn{
+  position:fixed;right:12px;bottom:14px;z-index:50;
+  width:56px;height:56px;border:none;background:transparent;cursor:pointer;
+  display:grid;place-items:center;
+}
+.music-ring{position:absolute;inset:0;animation:spin 9s linear infinite;animation-play-state:paused}
+.music-btn.playing .music-ring{animation-play-state:running}
+.music-core{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(150,150,140,.5);
+  display:grid;place-items:center;
+  box-shadow:0 2px 8px rgba(80,90,60,.15);
+  backdrop-filter:blur(2px);
+}
+.music-core svg{width:11px;height:11px;fill:#8a8a82}
+/* ---------- typography blocks ---------- */
+.caps{
+  font-family:var(--serif);
+  text-transform:uppercase;
+  font-weight:500;
+  font-size:clamp(16px,4.4vw,20px);
+  line-height:1.75;
+  letter-spacing:.055em;
+  color:var(--green);
+}
+.script{
+  font-family:var(--script);
+  color:var(--green-soft);
+  font-size:clamp(28px,8vw,38px);
+  line-height:1.25;
+}
+.name-script{
+  font-family:var(--script);
+  font-size:clamp(52px,15vw,72px);
+  color:var(--green);
+  line-height:1;
+  display:inline-block;
+  padding:0 8px;
+}
+.invite-flow{margin-top:30px}
+.invite-flow .row{margin:14px 0}
+.offset-r{transform:translateX(10%)}
+.offset-l{transform:translateX(-8%)}
+.divider-leaf{width:120px;margin:34px auto;opacity:.8}
+/* ---------- calendar ---------- */
+.cal-title{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:clamp(26px,7.4vw,34px);text-transform:uppercase;letter-spacing:.14em;font-weight:500}
+.calendar{
+  margin:26px auto 8px;max-width:340px;
+  font-family:var(--serif);
+}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px 0}
+.cal-dow{
+  font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--green);
+  padding:6px 0 12px;font-weight:600;
+}
+.cal-day{
+  position:relative;font-weight:600;font-size:15px;color:#1d1d1b;
+  padding:7px 0;font-variant-numeric:tabular-nums;
+}
+.cal-day.dim{color:transparent}
+.cal-day .heart-mark{
+  position:absolute;inset:-6px -10px;pointer-events:none;
+}
+.time-line{
+  font-size:clamp(22px,6.4vw,28px);text-transform:uppercase;letter-spacing:.16em;
+  font-weight:500;margin-top:26px;text-align:left;
+}
+.date-line{
+  margin-top:10px;text-align:left;
+  font-size:clamp(20px,5.8vw,26px);font-weight:500;
+  color:var(--green-soft);letter-spacing:.1em;font-variant-numeric:tabular-nums;
+}
+/* ---------- venue ---------- */
+.venue .addr{
+  text-transform:uppercase;letter-spacing:.1em;line-height:1.9;
+  font-size:clamp(15px,4.2vw,18px);font-weight:500;
+}
+.map-hint{
+  margin-top:20px;font-size:13.5px;text-transform:uppercase;letter-spacing:.08em;
+  line-height:1.7;color:var(--green-soft);font-weight:500;
+}
+.map-card{
+  display:flex;align-items:center;gap:14px;
+  margin:18px auto 0;max-width:340px;padding:14px 16px;
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(143,174,126,.5);border-radius:16px;
+  text-decoration:none;
+  box-shadow:0 4px 14px rgba(95,122,78,.1);
+  transition:box-shadow .25s, transform .25s;
+}
+.map-card:hover{box-shadow:0 8px 22px rgba(95,122,78,.2)}
+.map-card:active{transform:scale(.98)}
+.map-card-ico{
+  flex:none;width:52px;height:52px;border-radius:50%;
+  background:#F1F5EC;border:1px solid rgba(143,174,126,.55);
+  display:grid;place-items:center;
+}
+.map-card-ico svg{width:30px;height:30px}
+.map-card-txt{flex:1;text-align:left;display:flex;flex-direction:column;gap:3px}
+.map-card-txt b{
+  font-family:var(--serif);font-weight:600;color:var(--green);
+  font-size:15.5px;text-transform:uppercase;letter-spacing:.06em;
+}
+.map-card-txt small{
+  font-family:var(--serif);color:var(--green-soft);font-size:13.5px;
+}
+.map-card-arrow{
+  font-size:20px;color:var(--sage-dark);line-height:1;
+  transition:transform .25s;
+}
+.map-card:hover .map-card-arrow{transform:translateX(4px)}
+/* ---------- countdown (flip cards) ---------- */
+.countdown .script{display:block;margin-bottom:10px}
+.cd-timer{
+  display:flex;justify-content:center;align-items:flex-start;gap:5px;
+  font-variant-numeric:tabular-nums;
+}
+.cd-cell{display:flex;flex-direction:column;align-items:center}
+.cd-digits{display:flex;gap:4px}
+.cd-card{
+  width:clamp(30px,8.6vw,40px);height:clamp(42px,12vw,56px);
+  background:linear-gradient(180deg,#FFFFFF 0%,#F8F2EA 49.5%,#F1E9DE 50%,#FBF6EF 100%);
+  border:1px solid rgba(143,174,126,.45);
+  border-radius:7px;
+  display:grid;place-items:center;
+  position:relative;overflow:hidden;
+  box-shadow:0 3px 8px rgba(95,122,78,.14);
+}
+.cd-card::after{
+  content:'';position:absolute;left:0;right:0;top:50%;height:1px;
+  background:rgba(143,174,126,.28);
+}
+.cd-card b{
+  font-weight:500;font-size:clamp(26px,7.6vw,36px);color:#1d1d1b;line-height:1;
+  display:block;
+}
+.cd-card b.tick{animation:flipIn .45s ease}
+.cd-colon{
+  font-size:clamp(26px,8vw,36px);color:#1d1d1b;line-height:1;
+  height:clamp(42px,12vw,56px);display:flex;align-items:center;font-weight:400;
+}
+.cd-label{
+  margin-top:8px;font-size:11.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--green-soft);
+}
+@keyframes flipIn{
+  0%{transform:rotateX(90deg);opacity:0}
+  100%{transform:rotateX(0);opacity:1}
+}
+/* ---------- rsvp ---------- */
+.rsvp-form{
+  max-width:340px;margin:26px auto 0;text-align:left;
+}
+.rsvp-form label.q{
+  display:block;text-transform:uppercase;letter-spacing:.05em;
+  font-size:14.5px;line-height:1.65;margin-bottom:14px;font-weight:500;
+}
+.rsvp-form input[type=text]{
+  width:100%;height:52px;padding:0 18px;
+  font-family:var(--serif);font-size:16px;color:var(--ink);
+  background:rgba(255,255,255,.85);
+  border:1px solid var(--line);border-radius:2px;outline:none;
+}
+.rsvp-form input[type=text]::placeholder{color:#9a9a90;text-transform:uppercase;letter-spacing:.06em;font-size:14px}
+.rsvp-form input[type=text]:focus{border-color:var(--sage-dark)}
+.radio-row{display:flex;align-items:center;gap:12px;margin:16px 0;cursor:pointer}
+.radio-row input{
+  appearance:none;-webkit-appearance:none;
+  width:19px;height:19px;border-radius:50%;
+  border:1.5px solid var(--sage-dark);background:#fff;flex:none;
+  display:grid;place-items:center;
+}
+.radio-row input:checked::after{
+  content:'';width:9px;height:9px;border-radius:50%;background:var(--olive);
+}
+.radio-row span{
+  text-transform:uppercase;letter-spacing:.04em;font-size:14.5px;line-height:1.4;font-weight:500;
+}
+.btn-send{
+  display:block;width:100%;margin-top:26px;height:52px;
+  background:var(--olive);color:#fff;border:none;border-radius:30px;
+  font-family:var(--serif);font-size:16px;letter-spacing:.22em;text-transform:uppercase;
+  cursor:pointer;transition:transform .25s, box-shadow .25s;
+}
+.btn-send:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(58,74,31,.3)}
+.btn-send:active{transform:scale(.98)}
+.rsvp-done{
+  display:none;padding:12px 10px 4px;
+}
+.rsvp-done .script{font-size:clamp(30px,8.6vw,40px)}
+/* ---------- program ---------- */
+.program-rows{margin-top:26px}
+.prog-row{
+  display:flex;align-items:center;gap:16px;margin:22px 0;text-align:left;
+}
+.prog-ico{
+  flex:none;width:84px;height:84px;border-radius:50%;
+  background:rgba(255,255,255,.6);
+  border:1px solid rgba(143,174,126,.55);
+  display:grid;place-items:center;overflow:hidden;
+}
+.prog-ico svg{width:58px;height:58px}
+.prog-txt .t{
+  font-size:24px;font-weight:600;letter-spacing:.06em;line-height:1.1;
+}
+.prog-txt .d{
+  font-size:15px;text-transform:uppercase;letter-spacing:.1em;color:var(--green-soft);line-height:1.45;margin-top:4px;font-weight:500;
+}
+.hosts{margin-top:38px}
+.hosts .script{font-size:clamp(26px,7.6vw,34px)}
+/* ---------- footer ---------- */
+footer{padding:36px 26px 84px;text-align:center;position:relative}
+footer .script{font-size:clamp(30px,8.8vw,42px)}
+.foot-floral{width:230px;margin:6px auto 0;opacity:.95}
+/* ---------- reveal animation ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
+.reveal.on{opacity:1;transform:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,9px)}}
+@keyframes floatIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:none}}
+@media (min-width:700px){
+  .hero-floral{width:280px}
+  section{padding:70px 34px}
+}
+@media (min-height:760px){
+  .couple-wrap{width:min(84vw,360px)}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= CONFIG ================= -->
+<script>
+// Барлық мәліметті осы жерден өзгертуге болады / Все данные меняются здесь
+const CONFIG = {
+  groom: "Абылай",                          // жігіт аты
+  bride: "Айдана",                          // қыз аты
+  weddingISO: "2026-10-31T19:00:00+05:00",  // той күні мен сағаты
+  dateLine: "31.10.2026",                   // Той салтанаты жолы
+  monthLabel: "Қазан",                      // күнтізбе айы
+  yearLabel: "2026",
+  timeLabel: "Сағат: 19:00",
+  address1: "Сарыағаш қаласы,",
+  address2: "«Хан»",
+  venue: "мейрамханасы",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=%D0%A5%D0%B0%D0%BD%20%D0%BC%D0%B5%D0%B9%D1%80%D0%B0%D0%BC%D1%85%D0%B0%D0%BD%D0%B0%2C%20%D0%A1%D0%B0%D1%80%D1%8B%D0%B0%D0%B3%D0%B0%D1%88",
+  musicUrl: "https://dl.dropbox.com/scl/fi/ggcvzsb78fnnl8r42z9l0/Algyt-Aq-Koilek-Lyric-Video.m4a?rlkey=57js7vnlr1xrg9rbsu62wm73r&st=4h75qz78&dl=1",
+  parents: "Қазыбек - Эльмира",             // той иелері (ата-аналар)
+  sheetsUrl: "https://script.google.com/macros/s/AKfycbyT7pFA5iQTehgenbgZC-2aJ3qKSb5-lwcF5E1KWBWeckxlqONukIerFGH10WAksFjD/exec",
+  whatsapp: null                            // мысал: "77001234567" — қойсаңыз, RSVP WhatsApp-қа да жіберіледі
+};
+</script>
+<!-- =============== /CONFIG ================= -->
+
+<!-- watercolor backdrop -->
+<div class="backdrop" aria-hidden="true">
+  <svg class="bd-l" viewBox="0 0 200 200"><defs><radialGradient id="w1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#F3DCD6" stop-opacity=".9"/><stop offset="60%" stop-color="#F7E6E0" stop-opacity=".5"/><stop offset="100%" stop-color="#F7E6E0" stop-opacity="0"/></radialGradient><filter id="blur1"><feGaussianBlur stdDeviation="7"/></filter></defs><g filter="url(#blur1)"><ellipse cx="90" cy="90" rx="80" ry="64" fill="url(#w1)"/><ellipse cx="130" cy="130" rx="52" ry="70" fill="url(#w1)" opacity=".7"/></g></svg>
+  <svg class="bd-r" viewBox="0 0 200 200"><defs><radialGradient id="w2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#F3DCD6" stop-opacity=".85"/><stop offset="60%" stop-color="#F7E6E0" stop-opacity=".45"/><stop offset="100%" stop-color="#F7E6E0" stop-opacity="0"/></radialGradient></defs><g filter="url(#blur1)"><ellipse cx="100" cy="95" rx="74" ry="60" fill="url(#w2)"/><ellipse cx="70" cy="140" rx="46" ry="58" fill="url(#w2)" opacity=".7"/></g></svg>
+  <svg class="bd-l2" viewBox="0 0 200 200"><g filter="url(#blur1)"><ellipse cx="95" cy="95" rx="76" ry="62" fill="url(#w2)"/><ellipse cx="135" cy="125" rx="48" ry="62" fill="url(#w1)" opacity=".65"/></g></svg>
+  <svg class="bd-r2" viewBox="0 0 200 200"><g filter="url(#blur1)"><ellipse cx="100" cy="100" rx="78" ry="64" fill="url(#w1)"/><ellipse cx="65" cy="135" rx="44" ry="56" fill="url(#w2)" opacity=".7"/></g></svg>
+</div>
+
+<div class="page">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <!-- florals -->
+    <svg class="hero-floral hf-tr" viewBox="0 0 300 300" aria-hidden="true">
+      <g fill="none">
+        <!-- roses -->
+        <g transform="translate(150,120)">
+          <circle r="34" fill="#fff" opacity=".92"/><circle r="34" fill="none" stroke="#E9DFD3" stroke-width="1"/>
+          <path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/>
+          <path d="M0,-12 C8,-11 12,-5 11,2 C10,9 3,13 -4,11 C-11,9 -14,2 -11,-4 C-9,-9 -4,-12 0,-12 Z" fill="#EFE3D7"/>
+          <circle r="4" fill="#E7D9CB"/>
+        </g>
+        <g transform="translate(88,190) scale(.8)"><circle r="34" fill="#fff" opacity=".9"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/><path d="M0,-12 C8,-11 12,-5 11,2 C10,9 3,13 -4,11 C-11,9 -14,2 -11,-4 C-9,-9 -4,-12 0,-12 Z" fill="#EFE3D7"/><circle r="4" fill="#E7D9CB"/></g>
+        <g transform="translate(215,205) scale(.66)"><circle r="34" fill="#fff" opacity=".88"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/><path d="M0,-12 C8,-11 12,-5 11,2 C10,9 3,13 -4,11 C-11,9 -14,2 -11,-4 C-9,-9 -4,-12 0,-12 Z" fill="#EFE3D7"/><circle r="4" fill="#E7D9CB"/></g>
+        <!-- leaves -->
+        <path d="M150,120 C120,150 95,190 88,190 C100,150 120,130 150,120 Z" fill="#8FAE7E" opacity=".75"/>
+        <path d="M150,120 C185,140 210,175 215,205 C200,165 180,140 150,120 Z" fill="#5F7A4E" opacity=".7"/>
+        <path d="M120,90 C90,80 60,85 45,100 C75,100 100,95 120,90 Z" fill="#8FAE7E" opacity=".6"/>
+        <path d="M185,85 C215,70 250,72 268,88 C235,86 205,84 185,85 Z" fill="#A8B89A" opacity=".6"/>
+        <path d="M70,140 C50,150 38,170 40,192 C55,172 65,155 70,140 Z" fill="#A8B89A" opacity=".55"/>
+        <!-- buds -->
+        <circle cx="60" cy="115" r="7" fill="#F6EEE6" stroke="#E9DFD3"/>
+        <circle cx="240" cy="120" r="6" fill="#F6EEE6" stroke="#E9DFD3"/>
+        <circle cx="180" cy="60" r="5" fill="#F6EEE6" stroke="#E9DFD3"/>
+      </g>
+    </svg>
+    <svg class="hero-floral hf-bl" viewBox="0 0 300 300" aria-hidden="true">
+      <g>
+        <g transform="translate(150,150)">
+          <circle r="36" fill="#fff" opacity=".92"/>
+          <path d="M0,-23 C15,-21 23,-10 21,4 C19,18 6,25 -7,22 C-20,19 -25,6 -20,-6 C-16,-17 -8,-23 0,-23 Z" fill="#F6EEE6"/>
+          <path d="M0,-12 C8,-11 13,-5 12,2 C11,9 3,13 -4,11 C-11,9 -15,2 -12,-4 C-10,-9 -4,-12 0,-12 Z" fill="#EFE3D7"/>
+        </g>
+        <g transform="translate(90,90) scale(.7)"><circle r="34" fill="#fff" opacity=".9"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
+        <g transform="translate(215,95) scale(.6)"><circle r="34" fill="#fff" opacity=".88"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
+        <path d="M150,150 C115,135 85,105 90,90 C120,110 140,130 150,150 Z" fill="#8FAE7E" opacity=".75"/>
+        <path d="M150,150 C185,140 210,110 215,95 C190,120 170,135 150,150 Z" fill="#5F7A4E" opacity=".7"/>
+        <path d="M115,205 C90,215 72,235 72,258 C90,238 105,220 115,205 Z" fill="#A8B89A" opacity=".6"/>
+        <path d="M195,200 C220,208 240,228 242,250 C224,232 208,215 195,200 Z" fill="#8FAE7E" opacity=".6"/>
+      </g>
+    </svg>
+
+    <!-- vertical names -->
+    <div class="hero-names">
+      <div class="hero-name left" id="groomName">Абылай</div>
+      <div class="hero-name right" id="brideName">Айдана</div>
+    </div>
+
+    <!-- couple illustration -->
+    <svg class="couple-wrap" viewBox="0 0 340 400" aria-label="Абылай мен Айдана">
+      <defs>
+        <linearGradient id="gown" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F3EDE4"/>
+        </linearGradient>
+        <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#EFE9DE"/>
+        </linearGradient>
+      </defs>
+      <!-- soft shadow -->
+      <ellipse cx="170" cy="372" rx="98" ry="14" fill="#5F7A4E" opacity=".14"/>
+      <!-- ================= BRIDE (left) ================= -->
+      <g>
+        <!-- raised arm to hands -->
+        <path d="M150,150 C135,128 130,105 140,86" stroke="#F0DCD0" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <!-- gown -->
+        <path d="M128,208
+                 C118,250 100,300 86,352
+                 C120,368 175,368 205,350
+                 C196,304 186,252 182,210
+                 C165,220 143,218 128,208 Z" fill="url(#gown)"/>
+        <path d="M128,208 C143,218 165,220 182,210 C176,224 150,232 128,208 Z" fill="#EFE7DB"/>
+        <!-- bodice -->
+        <path d="M131,158 C128,178 126,194 128,208 C146,220 168,220 182,210 C184,192 182,174 179,156 C164,166 146,166 131,158 Z" fill="url(#gown)"/>
+        <!-- neckline -->
+        <path d="M131,158 C146,170 164,170 179,156 L177,150 C163,159 147,159 133,150 Z" fill="#F6EFE7"/>
+        <!-- bouquet arm -->
+        <path d="M132,196 C112,206 100,222 98,240" stroke="#F0DCD0" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <!-- bouquet -->
+        <g transform="translate(96,248)">
+          <circle r="17" fill="#fff" stroke="#E9DFD3"/><circle cx="-14" cy="8" r="11" fill="#fff" stroke="#E9DFD3"/><circle cx="14" cy="7" r="11" fill="#fff" stroke="#E9DFD3"/>
+          <path d="M0,14 C-6,28 -4,40 0,50 C4,40 6,28 0,14 Z" fill="#8FAE7E"/>
+          <path d="M-12,16 C-22,26 -26,38 -24,48 C-16,38 -12,26 -12,16 Z" fill="#A8B89A" opacity=".8"/>
+          <path d="M12,15 C22,24 28,36 27,46 C18,37 13,25 12,15 Z" fill="#A8B89A" opacity=".8"/>
+        </g>
+        <!-- neck & head -->
+        <circle cx="156" cy="128" r="6" fill="#F4E2D8"/>
+        <ellipse cx="156" cy="108" rx="20" ry="23" fill="#F7E7DD"/>
+        <path d="M139,104 C137,88 146,78 156,77 C167,77 175,87 174,103 C171,95 165,90 156,90 C147,90 141,96 139,104 Z" fill="#6B4F3A"/>
+        <!-- bun + flower -->
+        <circle cx="157" cy="80" r="9" fill="#6B4F3A"/>
+        <circle cx="150" cy="74" r="4.5" fill="#fff" stroke="#E9DFD3"/>
+        <!-- face -->
+        <path d="M150,110 q2,2 4,0" stroke="#8a6f5c" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M161,110 q2,2 4,0" stroke="#8a6f5c" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M154,120 q4,3 8,0" stroke="#c99a86" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M146,103 q-4,2 -1,4 M166,103 q4,2 1,4" stroke="#6B4F3A" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+        <!-- earring -->
+        <circle cx="138" cy="114" r="2" fill="#E8C87A"/>
+      </g>
+      <!-- joined hands overhead -->
+      <circle cx="170" cy="74" r="11" fill="#F0DCD0"/>
+      <circle cx="178" cy="70" r="10" fill="#EDD2C0"/>
+      <!-- ================= GROOM (right) ================= -->
+      <g>
+        <!-- raised arm -->
+        <path d="M196,150 C210,126 212,100 200,84" stroke="#EDD2C0" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <!-- shirt -->
+        <path d="M186,150 C182,172 180,192 182,214 C200,224 216,222 226,212 C228,192 226,170 222,150 C210,160 196,160 186,150 Z" fill="url(#shirt)"/>
+        <path d="M186,150 C196,162 212,162 222,150 L218,144 C210,152 198,152 190,144 Z" fill="#F6EFE7"/>
+        <!-- trousers -->
+        <path d="M182,214 C180,240 176,268 172,296 L172,298
+                 C186,306 208,306 222,300
+                 C222,268 224,240 226,212
+                 C210,222 196,222 182,214 Z" fill="#2B1E17"/>
+        <path d="M172,296 L168,352 L186,352 L186,300 Z" fill="#2B1E17"/>
+        <path d="M222,298 L228,352 L212,352 L206,301 Z" fill="#2B1E17"/>
+        <!-- shoes -->
+        <path d="M166,352 C160,356 158,362 164,364 L188,364 C192,362 190,355 186,352 Z" fill="#1a1310"/>
+        <path d="M210,352 C204,356 202,362 208,364 L232,364 C236,362 234,355 230,352 Z" fill="#1a1310"/>
+        <!-- belt -->
+        <path d="M182,214 C196,224 212,224 226,214 L226,220 C212,230 196,230 182,220 Z" fill="#241812"/>
+        <!-- neck & head -->
+        <rect x="199" y="138" width="12" height="14" rx="5" fill="#EDD2C0"/>
+        <ellipse cx="205" cy="118" rx="21" ry="24" fill="#F2DFD2"/>
+        <path d="M186,116 C184,96 194,84 205,83 C217,83 227,95 225,114 C222,102 215,95 205,95 C195,95 188,104 186,116 Z" fill="#4A3323"/>
+        <path d="M184,112 C180,104 181,96 186,92 C185,100 185,106 184,112 Z" fill="#4A3323"/>
+        <path d="M226,112 C230,104 229,96 224,92 C225,100 225,106 226,112 Z" fill="#4A3323"/>
+        <!-- face -->
+        <path d="M198,120 q2,2 4,0" stroke="#7a5c46" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M210,120 q2,2 4,0" stroke="#7a5c46" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M203,130 q4,3 8,0" stroke="#c99a86" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M195,112 q-4,2 -1,4 M215,112 q4,2 1,4" stroke="#4A3323" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+      </g>
+      <!-- floating petals -->
+      <circle cx="70" cy="140" r="5" fill="#fff" opacity=".85" stroke="#EDE2D6" stroke-width=".8"/>
+      <circle cx="272" cy="180" r="4" fill="#fff" opacity=".8" stroke="#EDE2D6" stroke-width=".8"/>
+      <circle cx="86" cy="320" r="4.5" fill="#fff" opacity=".8" stroke="#EDE2D6" stroke-width=".8"/>
+      <circle cx="256" cy="90" r="3.5" fill="#fff" opacity=".75" stroke="#EDE2D6" stroke-width=".8"/>
+    </svg>
+
+    <p class="wedding-day" aria-hidden="true">Wedding Day</p>
+    <p class="hero-date" id="heroDate">31 · 10 · 2026</p>
+
+    <div class="chevrons" aria-hidden="true">
+      <span>▾</span><span>▾</span>
+    </div>
+  </section>
+
+  <!-- ================= GREETING ================= -->
+  <section class="greeting reveal">
+    <p class="caps">
+      Құрметті ағайын-туыс,<br>
+      бауырлар, нағашы-жиен,<br>
+      бөлелер, құда-жекжат,<br>
+      дос-жарандар,<br>
+      сыныптастар мен әріптестер!
+    </p>
+    <svg class="divider-leaf" viewBox="0 0 120 20" aria-hidden="true">
+      <path d="M10,10 C30,2 40,2 58,10 C76,2 90,2 110,10" stroke="#8FAE7E" stroke-width="1.4" fill="none"/>
+      <path d="M58,10 C52,16 46,16 40,12 M58,10 C64,16 70,16 76,12" stroke="#A8B89A" stroke-width="1.1" fill="none"/>
+      <circle cx="10" cy="10" r="2" fill="#8FAE7E"/><circle cx="110" cy="10" r="2" fill="#8FAE7E"/>
+    </svg>
+  </section>
+
+  <!-- ================= INVITATION ================= -->
+  <section class="invite reveal">
+    <p class="caps">Сіз(дер)ді ұлымыз</p>
+    <div class="invite-flow">
+      <div class="row"><span class="name-script" id="groomScript">Абылай</span></div>
+      <p class="caps">мен</p>
+      <div class="row offset-r"><span class="name-script" id="brideScript">Айдана</span></div>
+    </div>
+    <p class="caps" style="margin-top:18px">
+      келініміздің үйлену<br>
+      тойына арналған<br>
+      салтанатты<br>
+      ақ дастарханымыздың<br>
+      қадірлі қонағы болуға<br>
+      шақырамыз!
+    </p>
+  </section>
+
+  <!-- ================= DATE / CALENDAR ================= -->
+  <section class="date reveal">
+    <p class="caps" style="font-size:24px;letter-spacing:.2em">Күні</p>
+    <div class="cal-title" style="margin-top:16px">
+      <span id="calMonth">Қазан</span>
+      <span id="calYear">2026</span>
+    </div>
+    <div class="calendar" id="calendar">
+      <div class="cal-grid" id="calGrid"><!-- JS --></div>
+    </div>
+    <p class="time-line" id="timeLine">Сағат: 19:00</p>
+    <p class="date-line" id="dateLine">31.10.2026</p>
+  </section>
+
+  <!-- ================= VENUE ================= -->
+  <section class="venue reveal">
+    <p class="script">Мекен-жайымыз:</p>
+    <p class="addr" style="margin-top:14px">
+      <span id="addr1">Сарыағаш қаласы,</span><br>
+      <span id="venueName" style="font-size:clamp(19px,5.6vw,24px)">«Хан»</span><br>
+      <span id="venueName2">мейрамханасы</span>
+    </p>
+    <p class="map-hint">Жетуге ыңғайлы болу үшін<br>төмендегі батырманы басыңыз:</p>
+    <a class="map-card" id="mapLink" href="#" target="_blank" rel="noopener" aria-label="Google Maps-та ашу">
+      <span class="map-card-ico">
+        <svg viewBox="0 0 60 60" fill="none" stroke="#5F7A4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M30 8c-9 0-16 7-16 16 0 12 16 28 16 28s16-16 16-28c0-9-7-16-16-16z" fill="#EAF0E3"/>
+          <circle cx="30" cy="24" r="6" fill="#fff"/>
+        </svg>
+      </span>
+      <span class="map-card-txt">
+        <b>Google Maps-та ашу</b>
+        <small id="mapCardSub">«Хан» мейрамханасы, Сарыағаш</small>
+      </span>
+      <span class="map-card-arrow">→</span>
+    </a>
+  </section>
+
+  <!-- ================= COUNTDOWN ================= -->
+  <section class="countdown reveal">
+    <p class="script">Қуанышымызға<br>ортақ болыңыздар!</p>
+    <p class="script" style="margin-top:14px">Тойға дейін:</p>
+    <div class="cd-timer" id="cdTimer" role="timer" aria-live="off">
+      <div class="cd-cell" data-unit="d"><div class="cd-digits"></div><div class="cd-label">күн</div></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-cell" data-unit="h"><div class="cd-digits"></div><div class="cd-label">сағат</div></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-cell" data-unit="m"><div class="cd-digits"></div><div class="cd-label">минут</div></div>
+      <div class="cd-colon">:</div>
+      <div class="cd-cell" data-unit="s"><div class="cd-digits"></div><div class="cd-label">секунд</div></div>
+    </div>
+  </section>
+
+  <!-- ================= RSVP ================= -->
+  <section class="rsvp reveal">
+    <p class="caps">Той иелері:</p>
+    <p class="script" id="parentsNames" style="display:none;margin-top:6px"></p>
+    <svg class="divider-leaf" viewBox="0 0 120 20" aria-hidden="true">
+      <path d="M10,10 C30,2 40,2 58,10 C76,2 90,2 110,10" stroke="#8FAE7E" stroke-width="1.4" fill="none"/>
+      <path d="M58,10 C52,16 46,16 40,12 M58,10 C64,16 70,16 76,12" stroke="#A8B89A" stroke-width="1.1" fill="none"/>
+      <circle cx="10" cy="10" r="2" fill="#8FAE7E"/><circle cx="110" cy="10" r="2" fill="#8FAE7E"/>
+    </svg>
+    <p class="caps">кешікпей келулеріңізді<br>сұраймыз!</p>
+    <p class="script" style="margin:22px 0 6px">Тойға қатысуыңызды<br>растауыңызды сұраймыз!</p>
+
+    <form class="rsvp-form" id="rsvpForm" novalidate>
+      <label class="q" for="guestName">Аты-жөніңіз (жұбыңызбен келетін болсаңыз, есімдеріңізді бірге жазуыңызды өтінеміз)</label>
+      <input type="text" id="guestName" name="name" placeholder="Аты-жөніңіз" autocomplete="name" required>
+      <label class="radio-row">
+        <input type="radio" name="attend" value="Әрине келемін" checked>
+        <span>Әрине келемін</span>
+      </label>
+      <label class="radio-row">
+        <input type="radio" name="attend" value="Жолдасыммен келемін">
+        <span>Жолдасыммен келемін</span>
+      </label>
+      <label class="radio-row">
+        <input type="radio" name="attend" value="Өкінішке орай келе алмаймын">
+        <span>Өкінішке орай келе алмаймын</span>
+      </label>
+      <button type="submit" class="btn-send">Жіберу</button>
+    </form>
+
+    <div class="rsvp-done" id="rsvpDone">
+      <p class="script">Рахмет,<br>сіздерді асығы<br>күтеміз!</p>
+      <svg class="divider-leaf" viewBox="0 0 120 20" aria-hidden="true">
+        <path d="M10,10 C30,2 40,2 58,10 C76,2 90,2 110,10" stroke="#8FAE7E" stroke-width="1.4" fill="none"/>
+        <circle cx="10" cy="10" r="2" fill="#8FAE7E"/><circle cx="110" cy="10" r="2" fill="#8FAE7E"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ================= PROGRAM ================= -->
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="reveal">
+    <p class="script" style="font-size:clamp(26px,7.6vw,34px)">Келіңіздер,<br>қуанышымызға ортақ<br>болыңыздар!</p>
+    <svg class="foot-floral" viewBox="0 0 300 160" aria-hidden="true">
+      <g transform="translate(150,80)">
+        <circle r="40" fill="#fff" opacity=".95"/><path d="M0,-26 C17,-24 26,-12 24,5 C21,21 7,29 -8,25 C-23,21 -29,7 -23,-7 C-18,-19 -9,-26 0,-26 Z" fill="#F6EEE6"/><path d="M0,-14 C9,-13 15,-6 13,3 C11,11 4,15 -5,13 C-13,11 -17,3 -13,-5 C-10,-11 -5,-14 0,-14 Z" fill="#EFE3D7"/>
+      </g>
+      <g transform="translate(75,60) scale(.75)"><circle r="34" fill="#fff" opacity=".92"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
+      <g transform="translate(228,58) scale(.7)"><circle r="34" fill="#fff" opacity=".9"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
+      <g transform="translate(35,100) scale(.55)"><circle r="34" fill="#fff" opacity=".88"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
+      <g transform="translate(265,100) scale(.55)"><circle r="34" fill="#fff" opacity=".88"/><path d="M0,-22 C14,-20 22,-10 20,4 C18,17 6,24 -7,21 C-19,18 -24,6 -19,-6 C-15,-16 -8,-22 0,-22 Z" fill="#F6EEE6"/></g>
+      <path d="M150,80 C110,70 85,45 80,25 C110,42 135,62 150,80 Z" fill="#8FAE7E" opacity=".7"/>
+      <path d="M150,80 C190,68 215,45 220,25 C190,42 165,62 150,80 Z" fill="#5F7A4E" opacity=".65"/>
+      <path d="M105,105 C80,112 62,128 60,148 C80,132 96,118 105,105 Z" fill="#A8B89A" opacity=".6"/>
+      <path d="M195,105 C220,112 238,128 240,148 C220,132 204,118 195,105 Z" fill="#A8B89A" opacity=".6"/>
+    </svg>
+    <p class="script" style="margin-top:10px">Абылай & Айдана</p>
+  </footer>
+</div>
+
+<!-- ================= MUSIC BUTTON ================= -->
+<button class="music-btn" id="musicBtn" aria-label="Музыка қосу/өшіру" title="Музыка">
+  <svg class="music-ring" viewBox="0 0 74 74" aria-hidden="true">
+    <defs><path id="circPath" d="M37,37 m-33,0 a33,33 0 1,1 66,0 a33,33 0 1,1 -66,0"/></defs>
+    <text font-family="'Cormorant Garamond',serif" font-size="10.5" letter-spacing="2.6" fill="#556049">
+      <textPath href="#circPath">МУЗЫКА • МУЗЫКА • МУЗЫКА •</textPath>
+    </text>
+  </svg>
+  <span class="music-core">
+    <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="iconPause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </span>
+</button>
+
+<script>
+/* ============ apply config ============ */
+(function(){
+  const g = CONFIG.groom, b = CONFIG.bride;
+  document.getElementById('groomName').textContent = g;
+  document.getElementById('brideName').textContent = b;
+  document.getElementById('groomScript').textContent = g;
+  document.getElementById('brideScript').textContent = b + (b.endsWith('а') ? '' : '');
+  document.getElementById('calMonth').textContent = CONFIG.monthLabel;
+  document.getElementById('calYear').textContent = CONFIG.yearLabel;
+  document.getElementById('timeLine').textContent = CONFIG.timeLabel;
+  document.getElementById('dateLine').textContent = CONFIG.dateLine;
+  document.getElementById('heroDate').textContent = CONFIG.dateLine.split('.').join(' · ');
+  document.getElementById('addr1').textContent = CONFIG.address1;
+  document.getElementById('venueName').textContent = CONFIG.address2;
+  document.getElementById('venueName2').textContent = CONFIG.venue;
+  document.getElementById('mapLink').href = CONFIG.mapUrl;
+  document.getElementById('mapCardSub').textContent =
+    CONFIG.address2.replace(/[«»]/g,'') + ' ' + CONFIG.venue.replace(/[«»]/g,'') + ', ' + CONFIG.address1.replace(/,$/,'').replace(' қаласы','');
+  const pn = document.getElementById('parentsNames');
+  if(CONFIG.parents && CONFIG.parents.trim()){
+    pn.textContent = CONFIG.parents;
+    pn.style.display = '';
+  }
+  document.title = g + ' & ' + b;
+})();
+
+/* ============ calendar with heart ============ */
+(function(){
+  const wed = new Date(CONFIG.weddingISO);
+  const y = wed.getFullYear(), m = wed.getMonth(), day = wed.getDate();
+  const grid = document.getElementById('calGrid');
+  const dows = ['Дс','Сс','Ср','Бс','Жм','Сб','Жб'];
+  dows.forEach(d=>{
+    const el = document.createElement('div');
+    el.className = 'cal-dow'; el.textContent = d;
+    grid.appendChild(el);
+  });
+  const first = new Date(y, m, 1);
+  const startDow = (first.getDay() + 6) % 7; // Monday=0
+  const daysIn = new Date(y, m+1, 0).getDate();
+  for(let i=0;i<startDow;i++){
+    const el = document.createElement('div');
+    el.className='cal-day dim'; el.textContent='0';
+    grid.appendChild(el);
+  }
+  for(let d=1; d<=daysIn; d++){
+    const el = document.createElement('div');
+    el.className='cal-day';
+    el.textContent = String(d).padStart(2,'0');
+    if(d === day){
+      el.insertAdjacentHTML('beforeend',
+        '<svg class="heart-mark" viewBox="0 0 60 52" preserveAspectRatio="none">' +
+        '<path d="M30 46 C18 38 6 30 6 19 C6 11 12 6 18.5 6 C23 6 27 8.5 30 13 C33 8.5 37 6 41.5 6 C48 6 54 11 54 19 C54 30 42 38 30 46 Z" ' +
+        'fill="none" stroke="#B34A5A" stroke-width="2.6" stroke-linecap="round"/></svg>');
+    }
+    grid.appendChild(el);
+  }
+})();
+
+/* ============ countdown (flip cards) ============ */
+(function(){
+  const target = new Date(CONFIG.weddingISO).getTime();
+  const cells = {
+    d: document.querySelector('.cd-cell[data-unit=d] .cd-digits'),
+    h: document.querySelector('.cd-cell[data-unit=h] .cd-digits'),
+    m: document.querySelector('.cd-cell[data-unit=m] .cd-digits'),
+    s: document.querySelector('.cd-cell[data-unit=s] .cd-digits')
+  };
+  // build digit cards
+  const cards = {};
+  Object.keys(cells).forEach(k=>{
+    cards[k] = [];
+    for(let i=0;i<2;i++){
+      const card = document.createElement('div');
+      card.className = 'cd-card';
+      const b = document.createElement('b');
+      b.textContent = '0';
+      card.appendChild(b);
+      cells[k].appendChild(card);
+      cards[k].push(b);
+    }
+  });
+  function setGroup(k, val){
+    const str = String(val).padStart(2,'0');
+    for(let i=0;i<2;i++){
+      const b = cards[k][i];
+      if(b.textContent !== str[i]){
+        b.textContent = str[i];
+        b.classList.remove('tick');
+        void b.offsetWidth; // restart animation
+        b.classList.add('tick');
+      }
+    }
+  }
+  function tick(){
+    let diff = Math.max(0, target - Date.now());
+    setGroup('d', Math.floor(diff/86400000));
+    setGroup('h', Math.floor(diff%86400000/3600000));
+    setGroup('m', Math.floor(diff%3600000/60000));
+    setGroup('s', Math.floor(diff%60000/1000));
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* ============ music ============ */
+(function(){
+  const btn = document.getElementById('musicBtn');
+  const audio = new Audio(CONFIG.musicUrl);
+  // preload immediately so first tap starts playback instantly
+  audio.preload = 'auto';
+  try{ audio.load(); }catch(e){}
+  const iPlay = document.getElementById('iconPlay');
+  const iPause = document.getElementById('iconPause');
+  function setUI(playing){
+    btn.classList.toggle('playing', playing);
+    iPlay.style.display = playing ? 'none' : '';
+    iPause.style.display = playing ? '' : 'none';
+  }
+  btn.addEventListener('click', ()=>{
+    if(audio.paused){
+      setUI(true); // react instantly
+      audio.play().catch(()=>setUI(false));
+    } else {
+      audio.pause(); setUI(false);
+    }
+  });
+  audio.addEventListener('ended', ()=>setUI(false));
+})();
+
+/* ============ RSVP ============ */
+(function(){
+  const form = document.getElementById('rsvpForm');
+  const done = document.getElementById('rsvpDone');
+  const KEY = 'rsvp_' + CONFIG.groom + '_' + CONFIG.bride;
+  // show saved state
+  try{
+    if(localStorage.getItem(KEY)){ form.style.display='none'; done.style.display='block'; }
+  }catch(e){}
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const name = document.getElementById('guestName').value.trim();
+    if(!name){
+      document.getElementById('guestName').focus();
+      document.getElementById('guestName').style.borderColor = '#B34A5A';
+      return;
+    }
+    const attend = form.querySelector('input[name=attend]:checked').value;
+    const record = {
+      name: name,
+      attend: attend,
+      couple: CONFIG.groom + ' & ' + CONFIG.bride,
+      at: new Date().toISOString()
+    };
+    try{ localStorage.setItem(KEY, JSON.stringify(record)); }catch(e){}
+    // list of all responses on this device
+    try{
+      const all = JSON.parse(localStorage.getItem(KEY+'_all')||'[]');
+      all.push(record);
+      localStorage.setItem(KEY+'_all', JSON.stringify(all));
+    }catch(e){}
+    // send to Google Sheets (Apps Script Web App)
+    if(CONFIG.sheetsUrl && CONFIG.sheetsUrl.startsWith('http')){
+      const body = new FormData();
+      body.append('name', record.name);
+      body.append('attend', record.attend);
+      body.append('couple', record.couple);
+      body.append('at', record.at);
+      fetch(CONFIG.sheetsUrl, {method:'POST', mode:'no-cors', body: body}).catch(()=>{});
+    }
+    if(CONFIG.whatsapp){
+      const msg = encodeURIComponent(
+        'Сәлеметсіз бе! ' + CONFIG.groom + ' & ' + CONFIG.bride +
+        ' тойына RSVP:\nАты-жөні: ' + name + '\n' + attend
+      );
+      window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + msg, '_blank');
+    }
+    form.style.display = 'none';
+    done.style.display = 'block';
+    done.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+  document.getElementById('guestName').addEventListener('input', function(){
+    this.style.borderColor = '';
+  });
+})();
+
+/* ============ reveal on scroll ============ */
+(function(){
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add('on'); io.unobserve(en.target); }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
