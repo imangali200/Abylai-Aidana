@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&family=Prata&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FBF6ED;
@@ -62,8 +62,8 @@ section{position:relative;padding:56px 26px;text-align:center}
   padding:26px 6px;pointer-events:none;
 }
 .hero-name{
-  font-family:var(--serif2);
-  font-weight:500;
+  font-family:'Prata',var(--serif2);
+  font-weight:400;
   font-size:clamp(38px,11vw,56px);
   line-height:.95;
   color:var(--green);
@@ -72,6 +72,26 @@ section{position:relative;padding:56px 26px;text-align:center}
 }
 .hero-name.left{writing-mode:vertical-rl;transform:rotate(180deg)}
 .hero-name.right{writing-mode:vertical-rl}
+/* letter-by-letter entrance + gentle drift */
+.hero-name .ltr{
+  display:inline-block;
+  opacity:0;
+  animation:ltrIn 1s cubic-bezier(.22,1,.36,1) both, ltrDrift 5.5s ease-in-out infinite;
+  animation-delay:calc(var(--i)*.14s + .4s), calc(var(--i)*.14s + 1.6s);
+}
+.hero-name.left .ltr{animation-name:ltrIn,ltrDriftRev}
+@keyframes ltrIn{
+  from{opacity:0;transform:translateY(-26px) scale(1.14);filter:blur(4px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes ltrDrift{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(5px)}
+}
+@keyframes ltrDriftRev{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
 .couple-wrap{
   width:min(82vw,360px);
   height:auto;
@@ -309,6 +329,7 @@ footer .script:last-child{
 @media (prefers-reduced-motion: reduce){
   .petal,.spark{display:none}
   .name-script,footer .script:last-child{animation:none}
+  .hero-name .ltr{animation:none;opacity:1}
 }
 /* ---------- rsvp ---------- */
 .rsvp-form{
@@ -405,6 +426,8 @@ footer .script{font-size:clamp(30px,8.8vw,42px)}
 // Барлық мәліметті осы жерден өзгертуге болады / Все данные меняются здесь
 const CONFIG = {
   groom: "Абылай",                          // жігіт аты
+  groomLatin: "Abylaikhan",                 // hero-дағы латиница (bos қалдырсаң — groom қолданылады)
+  brideLatin: "Aidana",                     // hero-дағы латиница
   bride: "Айдана",                          // қыз аты
   weddingISO: "2026-10-31T19:00:00+05:00",  // той күні мен сағаты
   dateLine: "31.10.2026",                   // Той салтанаты жолы
@@ -674,8 +697,20 @@ const CONFIG = {
 /* ============ apply config ============ */
 (function(){
   const g = CONFIG.groom, b = CONFIG.bride;
-  document.getElementById('groomName').textContent = g;
-  document.getElementById('brideName').textContent = b;
+  document.getElementById('groomName').textContent = CONFIG.groomLatin || g;
+  document.getElementById('brideName').textContent = CONFIG.brideLatin || b;
+  // letter-by-letter wrap for hero names animation
+  document.querySelectorAll('.hero-name').forEach(el=>{
+    const text = el.textContent;
+    el.textContent = '';
+    [...text].forEach((ch,i)=>{
+      const s = document.createElement('span');
+      s.className = 'ltr';
+      s.style.setProperty('--i', i);
+      s.textContent = ch;
+      el.appendChild(s);
+    });
+  });
   document.getElementById('groomScript').textContent = g;
   document.getElementById('brideScript').textContent = b + (b.endsWith('а') ? '' : '');
   document.getElementById('calMonth').textContent = CONFIG.monthLabel;
