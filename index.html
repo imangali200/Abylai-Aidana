@@ -51,7 +51,7 @@ body{
 /* tinted arch figure behind couple */
 .hero-figure{
   position:absolute;top:50%;left:50%;
-  width:min(84vw,390px);height:min(112vw,530px);
+  width:min(76vw,350px);height:min(100vw,470px);
   transform:translate(-50%,-49%);
   border-radius:999px 999px 26px 26px;
   background:linear-gradient(180deg,#E9F2EF 0%,#F4EFE4 70%,#FAF7F0 100%);
@@ -86,12 +86,13 @@ section{position:relative;padding:34px 26px;text-align:center}
   padding:34px 4px;pointer-events:none;z-index:3;
 }
 .hero-name{
-  font-family:'KZ GoodVibes','KZ Shelley','Marck Script',cursive;
+  font-family:'KZ Monumenta','Playfair Display',serif;
   font-weight:400;
-  font-size:clamp(48px,14vw,70px);
-  line-height:.9;
+  font-size:clamp(30px,8.5vw,44px);
+  line-height:1;
   color:var(--green);
-  letter-spacing:.02em;
+  letter-spacing:.14em;
+  text-transform:uppercase;
 }
 .hero-name.left{writing-mode:vertical-rl;transform:rotate(180deg);align-self:flex-start;margin-top:4vh}
 .hero-name.right{writing-mode:vertical-rl;align-self:flex-end;margin-bottom:15vh}
@@ -117,7 +118,7 @@ section{position:relative;padding:34px 26px;text-align:center}
 }
 .couple-wrap{
   position:relative;z-index:1;
-  width:min(104vw,460px);
+  width:min(86vw,390px);
   height:auto;
   margin:0 auto;
   display:block;
@@ -129,12 +130,12 @@ section{position:relative;padding:34px 26px;text-align:center}
   to{opacity:1;transform:scale(1)}
 }
 .wedding-day{
-  margin-top:26px;font-family:var(--serif);
+  margin-top:18px;font-family:var(--serif);
   text-transform:uppercase;letter-spacing:.5em;text-indent:.5em;
   font-size:13px;color:var(--green-soft);font-weight:500;
 }
 .hero-date{
-  margin-top:14px;font-family:var(--serif2);font-size:16px;letter-spacing:.34em;text-indent:.34em;
+  margin-top:10px;font-family:var(--serif2);font-size:16px;letter-spacing:.34em;text-indent:.34em;
   color:var(--gold);font-weight:500;font-variant-numeric:tabular-nums;
 }
 /* small florals for inner sections */
@@ -448,7 +449,7 @@ footer .script{font-size:clamp(30px,8.8vw,42px)}
   section{padding:44px 34px}
 }
 @media (min-height:760px){
-  .couple-wrap{width:min(104vw,460px)}
+  .couple-wrap{width:min(86vw,390px)}
 }
 </style>
 </head>
