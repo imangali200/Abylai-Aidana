@@ -8,10 +8,10 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FBF5EE;
+  --bg:#FBF6ED;
   --wash:#F3DCD6;
   --wash2:#F7E6E0;
   --green:#2F3B2A;
@@ -21,7 +21,11 @@
   --sage-dark:#5F7A4E;
   --ink:#2A2A2A;
   --line:#C9CBBE;
+  --gold:#B98F4E;
+  --gold2:#E3C88E;
+  --gold3:#F1E3C0;
   --serif:'Cormorant Garamond',serif;
+  --serif2:'Playfair Display',serif;
   --script:'Marck Script',cursive;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -58,12 +62,12 @@ section{position:relative;padding:56px 26px;text-align:center}
   padding:26px 6px;pointer-events:none;
 }
 .hero-name{
-  font-family:var(--serif);
+  font-family:var(--serif2);
   font-weight:500;
-  font-size:clamp(40px,12vw,58px);
+  font-size:clamp(38px,11vw,56px);
   line-height:.95;
   color:var(--green);
-  letter-spacing:.02em;
+  letter-spacing:.06em;
   text-transform:uppercase;
 }
 .hero-name.left{writing-mode:vertical-rl;transform:rotate(180deg)}
@@ -80,8 +84,46 @@ section{position:relative;padding:56px 26px;text-align:center}
   font-size:13px;color:var(--green-soft);font-weight:500;
 }
 .hero-date{
-  margin-top:14px;font-size:16px;letter-spacing:.34em;text-indent:.34em;
-  color:var(--green);font-weight:500;font-variant-numeric:tabular-nums;
+  margin-top:14px;font-family:var(--serif2);font-size:16px;letter-spacing:.34em;text-indent:.34em;
+  color:var(--gold);font-weight:500;font-variant-numeric:tabular-nums;
+}
+/* gold thin frame around couple */
+.hero-arch{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);
+  width:min(88vw,392px);pointer-events:none;opacity:.85;
+}
+/* sparkles */
+.spark{
+  position:absolute;color:var(--gold2);font-size:13px;pointer-events:none;
+  animation:twinkle 2.6s ease-in-out infinite;
+  text-shadow:0 0 6px rgba(227,200,142,.8);
+}
+@keyframes twinkle{
+  0%,100%{opacity:.15;transform:scale(.7) rotate(0deg)}
+  50%{opacity:1;transform:scale(1.15) rotate(20deg)}
+}
+/* falling petals */
+.petal{
+  position:fixed;top:-30px;z-index:5;pointer-events:none;
+  animation:petalFall linear infinite;
+  opacity:0;
+}
+@keyframes petalFall{
+  0%{transform:translateY(-4vh) translateX(0) rotate(0deg);opacity:0}
+  8%{opacity:.85}
+  50%{transform:translateY(48vh) translateX(4vw) rotate(180deg)}
+  92%{opacity:.7}
+  100%{transform:translateY(104vh) translateX(-2vw) rotate(360deg);opacity:0}
+}
+.hero-floral{animation:floralFloat 7s ease-in-out infinite}
+@keyframes floralFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-9px)}
+}
+.hf-bl{animation-name:floralFloatBl}
+@keyframes floralFloatBl{
+  0%,100%{transform:scaleX(-1) translateY(0)}
+  50%{transform:scaleX(-1) translateY(-9px)}
 }
 .chevrons{
   position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
@@ -108,12 +150,12 @@ section{position:relative;padding:56px 26px;text-align:center}
 .music-core svg{width:11px;height:11px;fill:#8a8a82}
 /* ---------- typography blocks ---------- */
 .caps{
-  font-family:var(--serif);
+  font-family:var(--serif2);
   text-transform:uppercase;
-  font-weight:500;
-  font-size:clamp(16px,4.4vw,20px);
-  line-height:1.75;
-  letter-spacing:.055em;
+  font-weight:400;
+  font-size:clamp(15px,4.2vw,19px);
+  line-height:1.85;
+  letter-spacing:.09em;
   color:var(--green);
 }
 .script{
@@ -124,17 +166,39 @@ section{position:relative;padding:56px 26px;text-align:center}
 }
 .name-script{
   font-family:var(--script);
-  font-size:clamp(52px,15vw,72px);
-  color:var(--green);
+  font-size:clamp(54px,16vw,76px);
   line-height:1;
   display:inline-block;
-  padding:0 8px;
+  padding:0 10px;
+  background:linear-gradient(100deg,#8a6a2f 0%,var(--gold) 30%,var(--gold2) 50%,#fdf3d9 54%,var(--gold2) 58%,var(--gold) 72%,#8a6a2f 100%);
+  background-size:250% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  animation:shimmer 6s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
 }
 .invite-flow{margin-top:30px}
 .invite-flow .row{margin:14px 0}
 .offset-r{transform:translateX(10%)}
 .offset-l{transform:translateX(-8%)}
-.divider-leaf{width:120px;margin:34px auto;opacity:.8}
+.divider-leaf{width:120px;margin:34px auto;opacity:.9}
+.divider-leaf path{stroke:#B99A5B}
+.divider-leaf circle{fill:#B99A5B}
+.radio-row input:checked::after{
+  content:'';width:9px;height:9px;border-radius:50%;background:var(--gold);
+}
+footer .script:last-child{
+  background:linear-gradient(100deg,#8a6a2f 0%,var(--gold) 30%,var(--gold2) 50%,#fdf3d9 54%,var(--gold2) 58%,var(--gold) 72%,#8a6a2f 100%);
+  background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer 6s ease-in-out infinite;
+}
 /* ---------- calendar ---------- */
 .cal-title{display:flex;justify-content:space-between;align-items:baseline;
   font-size:clamp(26px,7.4vw,34px);text-transform:uppercase;letter-spacing:.14em;font-weight:500}
@@ -144,8 +208,8 @@ section{position:relative;padding:56px 26px;text-align:center}
 }
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px 0}
 .cal-dow{
-  font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--green);
-  padding:6px 0 12px;font-weight:600;
+  font-family:var(--serif2);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--green);
+  padding:6px 0 12px;font-weight:500;
 }
 .cal-day{
   position:relative;font-weight:600;font-size:15px;color:#1d1d1b;
@@ -156,13 +220,13 @@ section{position:relative;padding:56px 26px;text-align:center}
   position:absolute;inset:-6px -10px;pointer-events:none;
 }
 .time-line{
-  font-size:clamp(22px,6.4vw,28px);text-transform:uppercase;letter-spacing:.16em;
+  font-family:var(--serif2);font-size:clamp(21px,6.2vw,27px);text-transform:uppercase;letter-spacing:.16em;
   font-weight:500;margin-top:26px;text-align:left;
 }
 .date-line{
   margin-top:10px;text-align:left;
-  font-size:clamp(20px,5.8vw,26px);font-weight:500;
-  color:var(--green-soft);letter-spacing:.1em;font-variant-numeric:tabular-nums;
+  font-family:var(--serif2);font-size:clamp(20px,5.8vw,26px);font-weight:500;
+  color:var(--gold);letter-spacing:.1em;font-variant-numeric:tabular-nums;
 }
 /* ---------- venue ---------- */
 .venue .addr{
@@ -213,16 +277,16 @@ section{position:relative;padding:56px 26px;text-align:center}
 .cd-digits{display:flex;gap:4px}
 .cd-card{
   width:clamp(30px,8.6vw,40px);height:clamp(42px,12vw,56px);
-  background:linear-gradient(180deg,#FFFFFF 0%,#F8F2EA 49.5%,#F1E9DE 50%,#FBF6EF 100%);
-  border:1px solid rgba(143,174,126,.45);
+  background:linear-gradient(180deg,#FFFFFF 0%,#F9F3E8 49.5%,#F3EAD8 50%,#FBF6ED 100%);
+  border:1px solid rgba(185,143,78,.4);
   border-radius:7px;
   display:grid;place-items:center;
   position:relative;overflow:hidden;
-  box-shadow:0 3px 8px rgba(95,122,78,.14);
+  box-shadow:0 3px 10px rgba(140,110,55,.16);
 }
 .cd-card::after{
   content:'';position:absolute;left:0;right:0;top:50%;height:1px;
-  background:rgba(143,174,126,.28);
+  background:rgba(185,143,78,.3);
 }
 .cd-card b{
   font-weight:500;font-size:clamp(26px,7.6vw,36px);color:#1d1d1b;line-height:1;
@@ -239,6 +303,10 @@ section{position:relative;padding:56px 26px;text-align:center}
 @keyframes flipIn{
   0%{transform:rotateX(90deg);opacity:0}
   100%{transform:rotateX(0);opacity:1}
+}
+@media (prefers-reduced-motion: reduce){
+  .petal,.spark{display:none}
+  .name-script,footer .script:last-child{animation:none}
 }
 /* ---------- rsvp ---------- */
 .rsvp-form{
@@ -272,10 +340,18 @@ section{position:relative;padding:56px 26px;text-align:center}
 .btn-send{
   display:block;width:100%;margin-top:26px;height:52px;
   background:var(--olive);color:#fff;border:none;border-radius:30px;
-  font-family:var(--serif);font-size:16px;letter-spacing:.22em;text-transform:uppercase;
-  cursor:pointer;transition:transform .25s, box-shadow .25s;
+  font-family:var(--serif2);font-size:15px;letter-spacing:.24em;text-transform:uppercase;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .25s, box-shadow .25s;
 }
-.btn-send:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(58,74,31,.3)}
+.btn-send::before{
+  content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);
+  transition:left .6s ease;
+}
+.btn-send:hover::before{left:130%}
+.btn-send:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(58,74,31,.35)}
 .btn-send:active{transform:scale(.98)}
 .rsvp-done{
   display:none;padding:12px 10px 4px;
@@ -402,6 +478,22 @@ const CONFIG = {
       <div class="hero-name left" id="groomName">Абылай</div>
       <div class="hero-name right" id="brideName">Айдана</div>
     </div>
+
+    <!-- gold arch frame -->
+    <svg class="hero-arch" viewBox="0 0 392 500" aria-hidden="true">
+      <path d="M14,494 L14,196 a182,182 0 0 1 364,0 L378,494" fill="none" stroke="var(--gold)" stroke-width="1.4" opacity=".75"/>
+      <path d="M26,494 L26,200 a170,170 0 0 1 340,0 L366,494" fill="none" stroke="var(--gold2)" stroke-width=".8" opacity=".6"/>
+      <g fill="var(--gold)">
+        <circle cx="196" cy="10" r="2.4"/><circle cx="188" cy="18" r="1.5"/><circle cx="204" cy="18" r="1.5"/>
+      </g>
+    </svg>
+
+    <span class="spark" style="top:24%;left:16%;animation-delay:.2s">✦</span>
+    <span class="spark" style="top:18%;right:18%;animation-delay:1.1s">✦</span>
+    <span class="spark" style="top:46%;left:8%;animation-delay:1.9s">✦</span>
+    <span class="spark" style="top:44%;right:9%;animation-delay:.7s">✦</span>
+    <span class="spark" style="top:70%;left:20%;animation-delay:1.5s;font-size:10px">✦</span>
+    <span class="spark" style="top:68%;right:21%;animation-delay:2.2s;font-size:10px">✦</span>
 
     <!-- couple illustration -->
     <svg class="couple-wrap" viewBox="0 0 340 400" aria-label="Абылай мен Айдана">
@@ -849,6 +941,24 @@ const CONFIG = {
   document.getElementById('guestName').addEventListener('input', function(){
     this.style.borderColor = '';
   });
+})();
+
+/* ============ falling petals ============ */
+(function(){
+  const n = 14;
+  for(let i=0;i<n;i++){
+    const p = document.createElement('span');
+    p.className = 'petal';
+    const s = 7 + Math.random()*8;              // size px
+    const hue = Math.random() < .3;
+    p.innerHTML = hue
+      ? '<svg width="'+s+'" height="'+s+'" viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="7" ry="4.4" fill="#E9D5A7" transform="rotate(35 10 10)"/></svg>'
+      : '<svg width="'+s+'" height="'+s+'" viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="7" ry="4.6" fill="#FFFFFF" opacity=".92" stroke="#EDE2D2" stroke-width=".6" transform="rotate(-25 10 10)"/></svg>';
+    p.style.left = (Math.random()*100) + 'vw';
+    p.style.animationDuration = (11 + Math.random()*10) + 's';
+    p.style.animationDelay = (-Math.random()*18) + 's';
+    document.body.appendChild(p);
+  }
 })();
 
 /* ============ reveal on scroll ============ */
