@@ -10,6 +10,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marck+Script&family=Prata&display=swap" rel="stylesheet">
 <style>
+/* Түпнұсқа сайттың шрифттері (designbystar) */
+@font-face{font-family:'KZ Shelley';src:url('fonts/kz-shelley.woff') format('woff');font-weight:400 800;font-style:normal;font-display:swap}
+@font-face{font-family:'KZ Champion';src:url('fonts/kz-champion.woff') format('woff');font-weight:400 800;font-style:normal;font-display:swap}
+@font-face{font-family:'KZ Monumenta';src:url('fonts/kz-monumenta.woff') format('woff');font-weight:400 900;font-style:normal;font-display:swap}
+</style>
+<style>
 :root{
   --bg:#FBF6ED;
   --wash:#F3DCD6;
@@ -25,8 +31,9 @@
   --gold2:#E3C88E;
   --gold3:#F1E3C0;
   --serif:'Cormorant Garamond',serif;
-  --serif2:'Playfair Display',serif;
-  --script:'Marck Script',cursive;
+  --serif2:'KZ Monumenta','Playfair Display',serif;
+  --script:'KZ Champion','Marck Script',cursive;
+  --script2:'KZ Shelley','Marck Script',cursive;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -68,7 +75,7 @@ section{position:relative;padding:56px 26px;text-align:center}
   padding:26px 6px;pointer-events:none;
 }
 .hero-name{
-  font-family:'Prata',var(--serif2);
+  font-family:'KZ Monumenta','Prata',var(--serif2);
   font-weight:400;
   font-size:clamp(38px,11vw,56px);
   line-height:.95;
@@ -191,7 +198,7 @@ section{position:relative;padding:56px 26px;text-align:center}
   line-height:1.25;
 }
 .name-script{
-  font-family:var(--script);
+  font-family:var(--script2);
   font-size:clamp(54px,16vw,76px);
   line-height:1;
   display:inline-block;
@@ -218,6 +225,10 @@ section{position:relative;padding:56px 26px;text-align:center}
 .radio-row input:checked::after{
   content:'';width:9px;height:9px;border-radius:50%;background:var(--gold);
 }
+
+#parentsNames{font-family:var(--script2)}
+footer .script:last-child{font-family:var(--script2)}
+.cd-card b{font-family:'Times New Roman',Times,serif}
 footer .script:last-child{
   background:linear-gradient(100deg,#8a6a2f 0%,var(--gold) 30%,var(--gold2) 50%,#fdf3d9 54%,var(--gold2) 58%,var(--gold) 72%,#8a6a2f 100%);
   background-size:250% 100%;
